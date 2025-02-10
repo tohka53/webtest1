@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Perfil de Cliente - Qualitech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-8 shadow-lg">
+        <form id="formulario" action="https://formsubmit.co/mecg1994@gmail.com" method="POST" enctype="multipart/form-data">
+            <!-- Campos ocultos para FormSubmit -->
+            <input type="hidden" name="_next" value="http://localhost:3000/gracias.html">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="box">
+            
+            <!-- Campo oculto para el PDF -->
+            <input type="hidden" id="pdfData" name="pdfData">
+
+            <div class="text-center mb-6">
+                <h1 class="text-2xl font-bold">DECLARACIÓN DE IMPUESTOS</h1>
+                <h2 class="text-xl">FORMULARIO DE PERFIL DE CLIENTE</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label>¿Fuiste nuestro cliente fiscal el año pasado?</label>
+                    <div class="flex space-x-4">
+                        <div>Si <input type="checkbox" name="cliente_previo_si" class="ml-2"></div>
+                        <div>No <input type="checkbox" name="cliente_previo_no" class="ml-2"></div>
+                    </div>
+                </div>
+                <div>
+                    <label>¿Cómo te enteraste de nosotros?</label>
+                    <div class="flex space-x-4">
+                        <div>Anuncio <input type="checkbox" name="referencia_anuncio" class="ml-2"></div>
+                        <div>Amigos <input type="checkbox" name="referencia_amigos" class="ml-2"></div>
+                        <div>Google <input type="checkbox" name="referencia_google" class="ml-2"></div>
+                        <div>Otros <input type="checkbox" name="referencia_otros" class="ml-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">1. Estado Civil</h3>
+                <div class="flex space-x-4">
+                    <div>Soltero <input type="checkbox" name="estado_civil" value="soltero" class="ml-2"></div>
+                    <div>Cabeza de Familia <input type="checkbox" name="estado_civil" value="cabeza_familia" class="ml-2"></div>
+                    <div>Casado declarando juntos <input type="checkbox" name="estado_civil" value="casado_juntos" class="ml-2"></div>
+                    <div>Casado declarando separados <input type="checkbox" name="estado_civil" value="casado_separados" class="ml-2"></div>
+                    <div>Viudo <input type="checkbox" name="estado_civil" value="viudo" class="ml-2"></div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">2. Información Personal</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label>Primer Nombre</label>
+                        <input type="text" name="primer_nombre" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Apellido</label>
+                        <input type="text" name="apellido" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Seguro Social #</label>
+                        <div class="flex space-x-2">
+                            <input type="text" name="ss_1" class="w-1/3 border p-2">
+                            <input type="text" name="ss_2" class="w-1/3 border p-2">
+                            <input type="text" name="ss_3" class="w-1/3 border p-2">
+                        </div>
+                    </div>
+                    <div>
+                        <label>Fecha de Nacimiento</label>
+                        <div class="flex space-x-2">
+                            <input type="text" name="nacimiento_mes" class="w-1/3 border p-2" placeholder="MM">
+                            <input type="text" name="nacimiento_dia" class="w-1/3 border p-2" placeholder="DD">
+                            <input type="text" name="nacimiento_anio" class="w-1/3 border p-2" placeholder="YYYY">
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label>Dirección</label>
+                    <input type="text" name="direccion" class="w-full border p-2">
+                </div>
+                <div class="grid grid-cols-3 gap-4 mt-4">
+                    <div>
+                        <label>Ciudad</label>
+                        <input type="text" name="ciudad" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Estado</label>
+                        <input type="text" name="estado" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Código Postal</label>
+                        <input type="text" name="codigo_postal" class="w-full border p-2">
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mt-4">
+                    <div>
+                        <label>Celular #</label>
+                        <input type="tel" name="celular" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Trabajo #</label>
+                        <input type="tel" name="trabajo" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Casa #</label>
+                        <input type="tel" name="casa" class="w-full border p-2">
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mt-4">
+                    <div>
+                        <label>E-mail</label>
+                        <input type="email" name="email" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Ocupación</label>
+                        <input type="text" name="ocupacion" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>PIN</label>
+                        <input type="text" name="pin" class="w-full border p-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">3. Información de Cónyuge</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label>Primer Nombre</label>
+                        <input type="text" name="conyuge_nombre" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Apellido</label>
+                        <input type="text" name="conyuge_apellido" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Seguro Social #</label>
+                        <div class="flex space-x-2">
+                            <input type="text" name="conyuge_ss_1" class="w-1/3 border p-2">
+                            <input type="text" name="conyuge_ss_2" class="w-1/3 border p-2">
+                            <input type="text" name="conyuge_ss_3" class="w-1/3 border p-2">
+                        </div>
+                    </div>
+                    <div>
+                        <label>Fecha de Nacimiento</label>
+                        <div class="flex space-x-2">
+                            <input type="text" name="conyuge_nacimiento_mes" class="w-1/3 border p-2" placeholder="MM">
+                            <input type="text" name="conyuge_nacimiento_dia" class="w-1/3 border p-2" placeholder="DD">
+                            <input type="text" name="conyuge_nacimiento_anio" class="w-1/3 border p-2" placeholder="YYYY">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">4. Dependientes</h3>
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label>Nombre</label>
+                        <input type="text" name="dependiente_nombre" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Fecha de Nacimiento</label>
+                        <input type="text" name="dependiente_nacimiento" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Seguro Social #</label>
+                        <input type="text" name="dependiente_ss" class="w-full border p-2">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="flex space-x-4">
+                        <div>¿Dependientes que no viven con usted?</div>
+                        <div>Si <input type="checkbox" name="dependientes_externos_si" class="ml-2"></div>
+                        <div>No <input type="checkbox" name="dependientes_externos_no" class="ml-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">5. Propietario</h3>
+                <div class="flex space-x-4">
+                    <div>Si <input type="checkbox" name="propietario_si" class="ml-2"></div>
+                    <div>No <input type="checkbox" name="propietario_no" class="ml-2"></div>
+                    <div>
+                        <label># de Unidades</label>
+                        <input type="text" name="numero_unidades" class="border p-2 ml-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">6. Trabajador por Cuenta Propia</h3>
+                <div class="flex space-x-4">
+                    <div>Si <input type="checkbox" name="cuenta_propia_si" class="ml-2"></div>
+                    <div>No <input type="checkbox" name="cuenta_propia_no" class="ml-2"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div>
+                        <label>Nombre de la empresa</label>
+                        <input type="text" name="empresa_nombre" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>EIN</label>
+                        <input type="text" name="empresa_ein" class="w-full border p-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">7. Intereses Bancarios</h3>
+                <div class="flex space-x-4">
+                    <div>Si <input type="checkbox" name="intereses_si" class="ml-2"></div>
+                    <div>No <input type="checkbox" name="intereses_no" class="ml-2"></div>
+                    <div>
+                        <label>Monto</label>
+                        <input type="text" name="intereses_monto" class="border p-2 ml-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">8. Compensación por Desempleo</h3>
+                <div class="flex space-x-4">
+                    <div>Si <input type="checkbox" name="desempleo_si" class="ml-2"></div>
+                    <div>No <input type="checkbox" name="desempleo_no" class="ml-2"></div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">9. IRA, Distribución de Pensiones o Anualidades</h3>
+                <div class="flex space-x-4">
+                    <div>Si <input type="checkbox" name="pensiones_si" class="ml-2"></div>
+                    <div>No <input type="checkbox" name="pensiones_no" class="ml-2"></div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">10. Moneda Virtual</h3>
+                <div class="flex space-x-4">
+                    <div>¿Compraste o vendiste alguna moneda virtual?</div>
+                    <div>Si <input type="checkbox" name="moneda_virtual_si" class="ml-2"></div>
+                    <div>No <input type="checkbox" name="moneda_virtual_no" class="ml-2"></div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">11. Venta de Acciones</h3>
+                <div class="flex space-x-4">
+                    <div>Si <input type="checkbox" name="acciones_si" class="ml-2"></div>
+                    <div>No <input type="checkbox" name="acciones_no" class="ml-2"></div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">12. Seguro de Salud</h3>
+                <div class="flex space-x-4 mb-4">
+                    <div>Privado <input type="checkbox" name="seguro_privado" class="ml-2"></div>
+                    <div>MassHealth <input type="checkbox" name="seguro_masshealth" class="ml-2"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    
+                    <div>
+                        <label>Nombre del Seguro</label>
+                        <input type="text" name="seguro_nombre" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Número de Miembro</label>
+                        <input type="text" name="seguro_numero" class="w-full border p-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-bold mb-2">13. Información de Banco</h3>
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label>Nombre del Banco</label>
+                        <input type="text" name="banco_nombre" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Número de Cuenta</label>
+                        <input type="text" name="banco_cuenta" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Número de Ruta</label>
+                        <input type="text" name="banco_ruta" class="w-full border p-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label>Firma del Cliente</label>
+                        <input type="text" name="firma" class="w-full border p-2">
+                    </div>
+                    <div>
+                        <label>Fecha</label>
+                        <input type="date" name="fecha_firma" class="w-full border p-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 text-sm text-gray-700">
+                <p>LAS TARIFAS DE LLENADO DEBEN PAGARSE EN EL MOMENTO DEL SERVICIO</p>
+                <p class="mt-4">Al firmar este formulario, certifico que toda la información proporcionada a Qualitech Professional Services es verdadera y correcta.</p>
+            </div>
+
+            <div class="text-center mt-6">
+                <p class="text-sm text-gray-600">Qualitech Professional Services</p>
+                <p class="text-sm text-gray-600">671 Adams St. Boston, Ma 02122</p>
+                <p class="text-sm text-gray-600">Phone: (617) 288-1333</p>
+            </div>
+
+            <div class="flex justify-center space-x-4 mt-8">
+                <button type="button" 
+                        onclick="generarYEnviarFormulario()" 
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Enviar Formulario
+                </button>
+                <button type="button" 
+                        onclick="descargarPDF()" 
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Descargar PDF
+                </button>
+            </div>
+            <input type="hidden" name="_subject" value="Nuevo Formulario Qualitech">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="box">
+        </form>
+        
+    </div>
+
+    // Actualiza solo la parte del script, manteniendo el HTML igual
+<script>
+    async function generarPDF() {
+        try {
+            const formulario = document.getElementById('formulario');
+            const botones = formulario.querySelectorAll('button');
+            
+            // Ocultar botones temporalmente para la captura
+            botones.forEach(btn => btn.style.display = 'none');
+
+            const canvas = await html2canvas(formulario, {
+                scale: 2,
+                useCORS: true,
+                logging: true,
+                scrollY: -window.scrollY,
+                height: formulario.scrollHeight, // Capturar altura total
+                windowHeight: formulario.scrollHeight // Usar altura total del formulario
+            });
+
+            // Restaurar botones
+            botones.forEach(btn => btn.style.display = 'block');
+
+            const imgData = canvas.toDataURL('image/jpeg', 1.0);
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'p',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            // Calcular las dimensiones del PDF
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const imgWidth = pageWidth;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            
+            // Agregar páginas según sea necesario
+            let heightLeft = imgHeight;
+            let position = 0;
+            let page = 1;
+
+            // Primera página
+            doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+
+            // Agregar páginas adicionales si es necesario
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                doc.addPage();
+                doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+                page++;
+            }
+            
+            // Retornar como base64 string
+            return doc.output('datauristring');
+        } catch (error) {
+            console.error('Error generando PDF:', error);
+            throw error;
+        }
+    }
+
+    async function generarYEnviarFormulario() {
+        try {
+            const pdfData = await generarPDF();
+            const formData = new FormData(document.getElementById('formulario'));
+
+            // Crear un elemento para el archivo
+            const blob = await fetch(pdfData).then(r => r.blob());
+            const file = new File([blob], "formulario.pdf", { type: "application/pdf" });
+            formData.append('attachment', file, 'formulario.pdf');
+
+            // Enviar usando fetch
+            const response = await fetch('https://formsubmit.co/mecg1994@gmail.com', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                alert('Formulario enviado exitosamente');
+            } else {
+                throw new Error('Error en el envío del formulario');
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error al enviar el formulario: ' + error.message);
+        }
+    }
+
+    async function descargarPDF() {
+        try {
+            const pdfData = await generarPDF();
+            const blob = await fetch(pdfData).then(r => r.blob());
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Formulario_Qualitech.pdf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        } catch (error) {
+            console.error('Error descargando PDF:', error);
+            alert('Error al descargar el PDF: ' + error.message);
+        }
+    }
+
+    // Manejar el envío del formulario
+    document.getElementById('formulario').addEventListener('submit', function(e) {
+        e.preventDefault();
+        generarYEnviarFormulario();
+    });
+</script>
